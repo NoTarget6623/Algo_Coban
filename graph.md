@@ -75,26 +75,36 @@ chúng thông qua một ma trận A kích thước N x N (với N là số nút 
 > 1. Định nghĩa
 >>&emsp;&emsp;Tổ chức dữ liệu kiểu danh sách kề là bạn sẽ lưu các đỉnh kề của một đỉnh vào các đoạn trong mảng để lưu trữ. Nếu có N đỉnh thì sẽ có N đoạn để lưu. Và chúng ta cần lưu lại chỉ số để quản lí phạm vi các đỉnh kề của đỉnh mà đoạn đó quản lí.
 > 2. Cách cài đặt
->> &emsp; Đầu tiên tạo 1 ma trận A kính thước N x N ( với N là số nút của đồ thị)
->> - Đồ thị không có trọng số:
->>   - A[i][j] = 1 khi đồ thị có đường đi từ đỉnh i đến đỉnh j.
->>   - A[i][j] = 0 khi đồ thị không có đường giữa 2 đỉnh.
->> - Đồ thị có trọng số:
->>   - A[i][j] = c khi đồ thị có đường đi từ đỉnh i đến đỉnh j (c chính là trọng số của cạnh đó).
->>   - A[i][j] = 0 khi đồ thị không có đường giữa 2 đỉnh.
+>> &emsp;Đầu tiên tạo ra 1 vector A chứa N vector rỗng. Với vector thứ i sẽ chứa các đỉnh kề với đỉnh i.
+>> - Với mỗi cạnh e =(u,v) ϵ E thì A[u].push_back(v); (đỉnh u có đỉnh kề là v)
 > 3. Ưu, nhược điểm.
 >> - Ưu điểm :
->>   - Dễ cài đặt.
->>   - Dễ nhận biết các đỉnh nào kề nhau.
->>   - Biết được bậc của từng đỉnh nếu đó là đồ thị đơn.
+>>   - Chi phí duyệt và lưu trữ khá tối ưu
 >> - Nhược điểm :
->>   - Dễ dàng nhận thấy vì sử dụng mảng 2 chiều nên kích thước dữ liệu chúng ta tốn n^2 và độ phức tạp của dữ liệu này cũng là O(n^2).
+>>   - Cài đặt bài toán bằng danh sách kề tương đối dài hơn so với ma trận kề và danh sách cạnh.
 
 ### **III.Danh sách cạnh**
 
 > 1. Định nghĩa
+>>&emsp;&emsp;Danh sách cạnh trong lý thuyết đồ thị được lưu trữ vào mảng một chiều, mỗi phần tử của mảng sẽ thể hiện thông tin của 2 đỉnh kề nhau
 > 2. Cách cài đặt
-> 3. Ưu, nhược điểm
+>>- C1 : Bạn có thể tạo cho riêng mình một struct dữ liệu của một cạnh gồm 2 thông tin, và khai báo một mảng thuộc dữ liệu đó. 
+>>- C2 :Tạo 2 mảng riêng để lưu các cạnh
+> 3. Ưu, nhược điểm.
+>> - Ưu điểm :
+>>   - Giảm được rất nhiều về chi phí và thời gian duyệt nếu đồ thị ít cạnh
+>> - Nhược điểm :
+>>   - Nhưng khi ta muốn duyệt tất cả cạnh kề của một đỉnh nào đó, lúc này chẳng có cách nào ngoài việc duyệt hết danh sách cạnh đó và lọc ra để xử lí, đặc biệt là khi đồ thị có nhiều cạnh thì thời gian duyệt sẽ tăng lên rất nhiều. 
+
+## **C. Các thuật toán tìm kiếm trên đồ thị**
+>### **I. Các khái niệm cơ bản**
+ >- Một **đường đi P** độ dài k từ đỉnh $v_0$ tới đỉnh $v_k$ là tập đỉnh { $v_0$, $v_1$, $v_2$,..., $v_k$} sao cho ( $v_{i−1}$ , $v_i$ )∈E,∀i:1≤i≤k. Khi đó ta nói đường đi này bao gồm các đỉnh \{ $v_0$, $v_1$, $v_2$,..., $v_k$\} và các cạnh \{( $v_0$, $v_1$), ( $v_1$, $v_2$), ..., ( $v_{k - 1}$, $v_k$)\}; và $v_0$ đến được $v_k$ thông qua đường đi P. <br>
+ >- Đường đi được gọi là **đường đi đơn giản (simple path)** nếu tất cả các đỉnh trên đường đi đó đều phân biệt. Đường đi được gọi là **đường đi đơn** nếu như không có cạnh nào trên đường đi đó đi qua hơn một lần. <br>
+>- Một **đường đi con (subpath)** P' của P là một đoạn liên tục các đỉnh và cạnh dọc theo đường đi P.<br>
+>- Đường đi P gọi là **chu trình (circuit)** nếu như $v_0$= $v_k$​. Chu trình P gọi là **chu trình đơn giản (simple circuit)* nếu như \{ $v_1$, $v_2$,..., $v_k$\} đôi một khác nhau. Chu trình mà trong đó không có cạnh nào đi qua hơn một lần được gọi là **chu trình đơn**. 
+
+### **II. Tìm kiếm theo chiều sâu (DFS)**
+
 
 
 
