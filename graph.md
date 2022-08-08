@@ -97,7 +97,7 @@ chúng thông qua một ma trận A kích thước N x N (với N là số nút 
 >>   - Nhưng khi ta muốn duyệt tất cả cạnh kề của một đỉnh nào đó, lúc này chẳng có cách nào ngoài việc duyệt hết danh sách cạnh đó và lọc ra để xử lí, đặc biệt là khi đồ thị có nhiều cạnh thì thời gian duyệt sẽ tăng lên rất nhiều. 
 
 ## **C. Các thuật toán tìm kiếm trên đồ thị**
->### **I. Các khái niệm cơ bản**
+### **I. Các khái niệm cơ bản**
  >- Một **đường đi P** độ dài k từ đỉnh $v_0$ tới đỉnh $v_k$ là tập đỉnh { $v_0$, $v_1$, $v_2$,..., $v_k$} sao cho ( $v_{i−1}$ , $v_i$ )∈E,∀i:1≤i≤k. Khi đó ta nói đường đi này bao gồm các đỉnh \{ $v_0$, $v_1$, $v_2$,..., $v_k$\} và các cạnh \{( $v_0$, $v_1$), ( $v_1$, $v_2$), ..., ( $v_{k - 1}$, $v_k$)\}; và $v_0$ đến được $v_k$ thông qua đường đi P. <br>
  >- Đường đi được gọi là **đường đi đơn giản (simple path)** nếu tất cả các đỉnh trên đường đi đó đều phân biệt. Đường đi được gọi là **đường đi đơn** nếu như không có cạnh nào trên đường đi đó đi qua hơn một lần. <br>
 >- Một **đường đi con (subpath)** P' của P là một đoạn liên tục các đỉnh và cạnh dọc theo đường đi P.<br>
@@ -105,6 +105,85 @@ chúng thông qua một ma trận A kích thước N x N (với N là số nút 
 
 ### **II. Tìm kiếm theo chiều sâu (DFS)**
 
+1. Định nghĩa<br>
+>&emsp;&emsp;DFS (Depth-First Search) là tên gọi cho thuật toán tìm kiếm trong đồ thị dựa theo ưu tiên chiều sâu. Có nghĩa là, xuất phát từ một nút, ta bắt đầu duyệt đến tận cùng từng nhánh tỏa ra từ nút đó rồi mới chuyển sang nhánh tiếp theo, rồi nút tiếp theo, v.v. … <br>
+&emsp;&emsp;Dễ hiểu hơn thì cách di chuyển trên đồ thị cũng giống như tư tưởng tham lam của con người :cứ đi sâu vào đến khi không còn đi được nữa rồi mới quay lại ngã rẽ gần nhất để thử rẽ đường khác.
 
+![](https://kienthuc24h.com/wp-content/uploads/2017/07/Depth-First-Search.gif)
+
+2. Ý tưởng <br>
+>&emsp;&emsp;Tư tưởng thuật toán có thể trình bày như sau: Từ một đỉnh S ban đầu ta sẽ có các đỉnh kề là x, từ đỉnh x ta sẽ có các đỉnh kề là y, và nó cũng thuộc nhánh s-x-y… Chúng ta thăm các nhánh đó theo chiều sâu (thăm đến khi không còn đỉnh kề chưa duyệt)
+
+3. Cài đặt có đệ quy + Sử dụng ma trận kề
+
+        void DFS(int i){
+            F[i] = 1; // Đánh dấu các đỉnh đã đi qua
+            for(int j = 1;j <= n;j++){
+                // Kiểm tra các đỉnh chưa đi qua
+                // và có đường đi từ đỉnh i -> j hay không
+                if(F[j] == 0 && a[i][j] == 1){
+                    DFS(j); // Duyệt đỉnh j
+                }
+            }
+        }
+
+4. Cài đặt không có đệ quy + Sử dụng danh sách kề
+
+        void DFS_Stack(int i){
+            stack <int> st;
+            st.push(i);
+            F[i] = 1;
+            while (!st.empty()){
+                i = st.top();st.pop();
+                for (int j = 0;j < a[i].size();j++){
+                    if (F[a[i][j]] == 0){
+                        F[a[i][j]] = 1;
+                        st.push(a[i][j]);
+                        st.push(i);
+                        break;
+                    }
+                }
+            }
+        }
+
+### **III. Tìm kiếm theo chiều rộng (BFS)**
+
+1. Định nghĩa<br>
+>&emsp;&emsp;Thuật toán tìm kiếm theo chiều rộng BFS là thuật toán tìm kiếm trong đồ thị bằng cách tìm kiếm dựa trên 2 thao tác chính là: cho trước một đỉnh của đồ thị và thêm các đỉnh kề với nó vào danh sách chờ duyệt. Phương pháp cài đặt này là “lập lịch” để duyệt các đỉnh theo thứ tự duyệt ưu tiên trên chiều rộng (đỉnh nào gần với đỉnh gốc sẽ được duyệt trước) <br>
+&emsp;&emsp;Vì nguyên tắc trên (đỉnh nào gần gốc sẽ được duyệt trước) nên thuật toán tìm kiếm theo chiều rộng BFS thường được dùng để tìm đường đi ngắn nhất giữa các đỉnh.
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/T%C3%ACm_ki%E1%BA%BFm_theo_chi%E1%BB%81u_r%E1%BB%99ng_BFS.gif/310px-T%C3%ACm_ki%E1%BA%BFm_theo_chi%E1%BB%81u_r%E1%BB%99ng_BFS.gif)
+
+2. Ý tưởng <br>
+>&emsp;&emsp;Thuật toán tìm kiếm theo chiều rộng (BFS) là bắt đầu từ một đỉnh bất kì u nào đó duyệt đến các đỉnh v kề nó được một tập các đỉnh, tiếp tục chọn 1 đỉnh trong tập các đỉnh vừa lấy được đem đỉnh đó đi tìm các đỉnh chưa xét và đưa vào hàng đợi.
+
+3. Thuật toán Loang
+>- Định nghĩa : 
+>   - Thuật toán loang có tên gọi như vậy vì nguyên lý hoạt động của nó giống vết dầu loang. Từ một vết dầu nhỏ sẽ được loang ra xung quanh.
+>   - Thuật toán loang trên ma trận cũng vậy, bạn sẽ duyệt một ô trên ma trận và sau đó duyệt các điểm xung quanh nó và dần loang ra để giải quyết bài toán.   
+
+4. Cài đặt BFS sử dụng queue
+
+        void BFS(int i){
+            queue <int> q;
+            q.push(i); // Đẩy đỉnh đầu tiên vào queue
+            F[i] = 1; // Đánh dấu đỉnh đầu tiên đã đi qua
+            while(!q.empty()){
+                i = q.front();q.pop();// Lấy ra 1 đỉnh từ queue
+                for(int j = 1;j <= n;j++){
+                    // Tồn tại cạnh i -> j và đỉnh j chưa được đi qua
+                    if(a[i][j] == 1 && F[j] == 0){
+                        q.push(j); // Thêm đỉnh j vào queue
+                        F[j] = 1; // Đánh dấu đỉnh j đã đi qua
+                    }
+                }
+            }
+        }
+
+### **IV.Độ phức tạp tính toán của DFS và BFS**
+>Tùy vào cách cài đặt đồ thị mà ta sẽ thu được các giải thuật với độ phức tạp khác nhau:
+>- Nếu đồ thị biểu diễn bằng danh sách kề, cả hai giải thuật BFS/DFS đều có độ phức tạp là O(n + m) ~ O(n) Cách cài đặt này là tốt nhất.
+>- Nếu đồ thị biểu diễn bằng ma trận kề, độ phức tạp tính toán sẽ là O(n^2)
+>- Nếu đồ thị biểu diễn bằng danh sách cạnh, thao tác duyệt mọi đỉnh kề với đỉnh u sẽ buộc phải duyệt qua toàn bộ danh sách cạnh, dẫn đến độ phức tạp tính toán là O(n*m). Đây là cách cài đặt tệ nhất.
 
 
