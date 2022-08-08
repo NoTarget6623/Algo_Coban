@@ -195,11 +195,17 @@ chúng thông qua một ma trận A kích thước N x N (với N là số nút 
 &emsp;&emsp;- Không thể nhận thêm bất kì một đỉnh nào mà vẫn duy trì tính chất trên. <br>&emsp;
 Một đồ thị liên thông có đúng một thành phần liên thông, chính là toàn bộ đồ thị.
 3. Cạnh cầu
->
+>&emsp;&emsp;Cầu là cạnh mà khi loại nó khỏi đồ thị thì số thành phần liên thông/ liên thông mạnh của đồ thị tăng lên.
 4. Khớp (Đỉnh trụ)
->
+>&emsp;&emsp;Khớp là đỉnh mà khi loại nó khỏi đồ thị thì số thành phần liên thông/liên thông mạnh của đồ thị tăng lên.
 
 ### **VI. Các định nghĩa trong đồ thị có  hướng**
+
+1. Liên thông mạnh
+>- Một đồ thị có hướng là liên thông mạnh nếu như có đường từ bất kì đỉnh nào tới bất kì đỉnh nào khác
+>- Một thành phần liên thông mạnh của một đồ thị có hướng là một đồ thị con tối đại liên thông mạnh.
+2. Liên thông yếu
+>- Đồ thị có hướng gọi là liên thông yếu nếu có đường đi giữa 2 đỉnh bất kỳ của đồ thị vô hướng tương ứng với đồ thị đã cho. Tức là hủy bỏ các hướng của các cạnh trong đồ thị.
 
 ### **VII. Code đếm thành phần liên thông**
 
