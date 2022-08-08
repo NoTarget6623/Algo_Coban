@@ -180,10 +180,59 @@ chúng thông qua một ma trận A kích thước N x N (với N là số nút 
             }
         }
 
-### **IV.Độ phức tạp tính toán của DFS và BFS**
+### **IV. Độ phức tạp tính toán của DFS và BFS**
 >Tùy vào cách cài đặt đồ thị mà ta sẽ thu được các giải thuật với độ phức tạp khác nhau:
 >- Nếu đồ thị biểu diễn bằng danh sách kề, cả hai giải thuật BFS/DFS đều có độ phức tạp là O(n + m) ~ O(n) Cách cài đặt này là tốt nhất.
 >- Nếu đồ thị biểu diễn bằng ma trận kề, độ phức tạp tính toán sẽ là O(n^2)
 >- Nếu đồ thị biểu diễn bằng danh sách cạnh, thao tác duyệt mọi đỉnh kề với đỉnh u sẽ buộc phải duyệt qua toàn bộ danh sách cạnh, dẫn đến độ phức tạp tính toán là O(n*m). Đây là cách cài đặt tệ nhất.
 
+### **V. Các định nghĩa trong đồ thị vô  hướng**
+1. Liên thông
+>Đồ thị vô hướng được gọi là liên thông nếu luôn tìm thấy được đường đi giữa 2 đỉnh bất kỳ
+2. Thành phần liên thông
+>Một thành phần liên thông của một đồ thị vô hướng là:<br>
+&emsp;&emsp;- Một đồ thị con trong đó giữa bất kì hai đỉnh nào đều có đường đi đến nhau <br>
+&emsp;&emsp;- Không thể nhận thêm bất kì một đỉnh nào mà vẫn duy trì tính chất trên. <br>&emsp;
+Một đồ thị liên thông có đúng một thành phần liên thông, chính là toàn bộ đồ thị.
+3. Cạnh cầu
+>
+4. Khớp (Đỉnh trụ)
+>
 
+### **VI. Các định nghĩa trong đồ thị có  hướng**
+
+### **VII. Code đếm thành phần liên thông**
+
+Sử dụng DFS (hoặc BFS) :
+
+Hàm DFS vẫn được code như bình thường không cần sửa đổi gì thêm
+
+    void DFS(int i){
+        F[i] = 1;
+        for(int j = 1;j <= n;j++){
+            if(F[j] == 0 && a[i][j] == 1){
+                DFS(j); 
+            }
+        }
+    }
+
+Quan trọng là ở trong hàm main chúng ta cần thêm 1 bước xử lý :
+
+    int main(){
+        cin >> n >> k;
+        F.assign(n + 1,0);
+        a.assign(n + 1,vector <int> (n + 1,0));
+        for(int i = 1;i <= k;i++){
+            cin >> x >> y;
+            a[x][y] = a[y][x] = 1;
+        }
+        int ans = 0; // Biến để đếm số vùng liên thông
+        for(int i = 1;i <= n;i++){
+            // Bắt đầu duyệt tại đỉnh của vùng liên thông chưa xét
+            if(F[i] == 0){ 
+                ans++;
+                DFS(i);
+            }
+        }
+        cout << ans;
+    }
