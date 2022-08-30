@@ -356,4 +356,47 @@ public:
 - Khi đã dùng setter và getter thì thuộc tính nên để private
 - Hãy cẩn thận với kiểu dữ liệu tham chiếu
 
+## VII. Từ khóa static
+
+&emsp;&Đôi lúc người lập trình mong muốn 1 thuộc tính nào đó được dùng chung cho mọi đối tượng (chỉ được cấp phát 1 vùng nhớ duy nhất). Từ đó từ **thành viên tĩnh** (static) ra đời.
+
+&emsp;Đặc điểm của **thành viên tĩnh**:
+- Được khởi tạo 1 lần duy nhất ngay khi biên dịch chương trình.
+- Có thể dùng chung cho mọi đối tượng.
+- Được gọi thông qua tên lớp.
+- Được huỷ khi kết thúc chương trình.
+
+&emsp;Có 2 loại **thành viên tĩnh** cơ bản:
+- Biến tĩnh (static variable).
+- Phương thức tĩnh (static method).
+
+1.Biến tĩnh
+
+Cú pháp:
+``` C++
+static <kiểu dữ liệu> <tên biến> = <giá trị khởi tạo>;
+```
+Bạn có thể hiểu biến tĩnh là:
+
+- Một biến dùng chung cho mọi đối tượng thuộc lớp.
+- Nó được khởi tạo vùng nhớ 1 lần duy nhất ngay khi chương trình được nạp vào bộ nhớ để thực thi và huỷ khi kết thúc chương trình.
+
+2.Phương thức tĩnh
+``` C++
+static <kiểu trả về> <tên phương thức>{
+    // nội dung phương thức
+}
+```
+Hàm tĩnh được sử dụng với 2 mục đích chính:
+
+- Hàm tĩnh là 1 hàm dùng chung của lớp. Được gọi thông qua tên lớp và không cần khởi tạo bất kỳ đối tượng nào, từ đó tránh việc lãng phí bộ nhớ.
+- Hỗ trợ trong việc viết các hàm tiện ích để sử dụng lại.
+
+## VII. Kỹ thuật chia tách file (file.h và file.cpp)
+
+1. Tại sao phải tách file?
+
+&emsp;&emsp;Khi lưu toàn bộ code vào một file main sẽ gây ra rất nhiều vấn đề bất lợi, có thể kể đến như: Chương trình trở nên quá dài; khó quản lý, sử dụng. Giả sử ta khi muốn tìm một hàm nào đấy để chỉnh sửa thì sẽ làm tiêu tốn thời gian vì có quá nhiều hàm và không biết nó ở đâu.
+
+
 
