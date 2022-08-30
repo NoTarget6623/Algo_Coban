@@ -398,5 +398,33 @@ Hàm tĩnh được sử dụng với 2 mục đích chính:
 
 &emsp;&emsp;Khi lưu toàn bộ code vào một file main sẽ gây ra rất nhiều vấn đề bất lợi, có thể kể đến như: Chương trình trở nên quá dài; khó quản lý, sử dụng. Giả sử ta khi muốn tìm một hàm nào đấy để chỉnh sửa thì sẽ làm tiêu tốn thời gian vì có quá nhiều hàm và không biết nó ở đâu.
 
+&emsp;&emsp;Việc tách code C++ cũng như tách code ở các ngôn ngữ khác sẽ giúp:
+- Dễ quản lí, bảo trì source code.
+- Giúp code dễ đọc, dễ hiểu và dễ sử dụng.
+- Tái sử dụng các hàm đã viết.
 
+2. Tách code C++ như thế nào?
+
+**B1** : Tạo ```header.h``` để khai báo các thư viện dùng chung
+
+**B2** : Tạo ```file.h``` để khai báo hàm và ```file.cpp``` để viết hàm
+
+***Note*** : 
+- Nên đặt trùng tên của file.h và file.cpp cho dễ quản lý
+- Mỗi ```file.h``` đều phải có dòng code “#pragma once” ở đầu.
+
+**B3** : Tạo ```main.cpp``` để để chạy code
+## VIII. Quy tắc đặt tên trong OOP
+- Dùng tiếng Anh
+
+&emsp;&emsp;&emsp;&emsp;Luôn sử dụng tiếng Anh để đặt tên hàm và biến.
+
+- Quy ước đặt tên
+
+&emsp;&emsp;&emsp;&emsp;Quán nhất trong việc đặt tên cùng với team
+
+- Nguyên tắc S-I-D
+  - Short (ngắn gọn): tên không được dài, không phải mất thời gian để gõ và nhớ.
+  - Intuitive (tự nhiên): tên khi đọc lên phải cho cảm giác xuôi tai, gần gũi với văn nói.
+  - Descriptive (súc tích): tên phải mô tả được ý nghĩa, tác dụng của nó, bằng cách hiệu quả nhất.
 
