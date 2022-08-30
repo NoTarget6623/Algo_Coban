@@ -221,3 +221,99 @@ ClassName(const ClassName &old_obj){
 ```
 Trong đó ```Classname``` là tên của lớp, ```old_obj``` là đối tượng cũ sẽ lấy làm gốc để sao chép sang đối tượng mới.
 
+Chúng ta lấy ví dụ đơn giản về hàm khởi tạo sao chép nhé:
+
+``` C++
+#include <iostream>  
+using namespace std;  
+class Mayvitinh { 
+    int chieurong;   
+    int chieudai; 
+    string tenmay;
+    public:  
+       Mayvitinh(int cd, string tm, int cr) {    
+            chieudai = cd;    
+            tenmay = tm;    
+            chieurong = cr; 
+       }    
+       Mayvitinh(Mayvitinh &m) {
+           tenmay = m.tenmay;
+           chieudai = m.chieudai;
+           chieurong = m.chieurong;
+       }
+       void HienThi() {    
+            cout << tenmay << endl;
+            cout << "   Chieu dai: " << chieudai << endl;
+            cout << "   Chieu rong: " << chieurong << endl;
+       }    
+};  
+  
+int main() {  
+    Mayvitinh mayAsus(50, "may Asus", 25);    
+    Mayvitinh mayAcer(mayAsus); // hàm sao chép
+    mayAsus.HienThi();    
+    mayAcer.HienThi();
+    return 0;  
+}
+```
+Và kết quả sau khi thực thi chương trình trên như sau:
+
+![](https://codelearn.io/Media/Default/Users/DatTrann/OOP/Annotation%202020-06-19%20002008-1.png)
+
+Hàm khởi tạo sao chép (Copy Constructor) được gọi trong các trường hợp sau đây:
+- Khi một đối tượng của lớp được trả về bằng một giá trị.
+- Khi một đối tượng của lớp được truyền đối số dưới dạng tham số của một hàm.
+- Khi một đối tượng được tạo ra dựa trên một đối tượng khác cùng lớp.
+- Khi trình biên dịch tạo một đối tượng tạm thời.
+
+***Note:***
+*Bất cứ khi nào chúng ta định nghĩa một hoặc nhiều hàm tạo có tham số cho một lớp, hàm tạo mặc định (không có tham số) cũng phải được xác định rõ ràng vì trình biên dịch sẽ không cung cấp hàm tạo mặc định trong trường hợp này. Điều đó tuy không cần thiết nhưng nó được coi là cách tốt nhất để luôn xác định một hàm tạo mặc định.*
+
+2. Hàm hủy (Desconstructor)
+
+&emsp;Hàm hủy (Destructor) ngược lại với hàm khởi tạo, trong khi hàm khởi tạo dùng để khởi tạo giá trị cho đối tượng thì **hàm hủy** dùng để hủy đối tượng.
+
+&emsp;Chỉ có duy nhất một **hàm hủy** trong một lớp. **Hàm hủy** tự động được gọi. Nếu như chúng ta không định nghĩa **hàm hủy** thì mặc định trình biên dịch sẽ tự tạo ra một **hàm hủy** mặc nhiên.
+
+&emsp;Cũng giống như hàm xây dựng, **hàm hủy** được định nghĩa có cùng tên với tên lớp, khôn có bất cứ kiểu gì trả về kể cẳ kiểu void, tuy nhiên phải có dấu ~ trước tên của **hàm hủy**.
+
+Cú pháp của **hàm hủy (Destructor)** như sau:
+``` C++
+~Classname() { };
+```
+Chúng ta cùng xem xét một ví dụ đơn giản nhất về hàm hủy như sau:
+``` C++
+#include <iostream>  
+using namespace std;  
+class Mayvitinh  {  
+   public:  
+        Mayvitinh() {    
+            cout << "Ham khoi tao duoc goi" << endl;    
+        }    
+        ~Mayvitinh() {    
+            cout << "Ham huy duoc goi" << endl;    
+        }  
+};  
+int main() {  
+    Mayvitinh mayAsus;   
+    Mayvitinh mayAcer; 
+    return 0;  
+}
+```
+Và sau khi chạy chương trình sẽ có kết quả như sau: 
+
+![](https://codelearn.io/Media/Default/Users/DatTrann/OOP/Annotation%202020-06-19%20102854.png)
+
+Như trong code trên, ta có thể thấy hàm hủy (Destructor) sẽ được gọi tự động khi đối tượng đi ra khỏi phạm vi:
+- Kết thúc hàm
+- Kết thúc chương trình
+- Kết thúc một block
+- Toán tử delete được gọi
+
+Và có hai hạn chế khi sử dụng hàm hủy đó là:
+- Chúng ta không thể lấy địa chỉ của nó
+- Lớp con không có thừa kế hàm hủy từ lớp cha của nó
+
+&emsp;Với C++ thì nếu ta không khai báo một hàm hủy, trình biên dịch cũng sẽ tự định nghĩa một hàm hủy. Thông thường thì hàm hủy này hoạt động khá tốt, nhưng khi bài toán có sử dụng con trỏ, hoặc cấp phát bộ nhớ động thì ban nên khai báo một hàm huỷ riêng để tránh rỏ rỉ bộ nhớ.
+
+
