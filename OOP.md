@@ -316,4 +316,44 @@ Và có hai hạn chế khi sử dụng hàm hủy đó là:
 
 &emsp;Với C++ thì nếu ta không khai báo một hàm hủy, trình biên dịch cũng sẽ tự định nghĩa một hàm hủy. Thông thường thì hàm hủy này hoạt động khá tốt, nhưng khi bài toán có sử dụng con trỏ, hoặc cấp phát bộ nhớ động thì ban nên khai báo một hàm huỷ riêng để tránh rỏ rỉ bộ nhớ.
 
+## VI. Setter và Getter
+
+&emsp;Setter và Getter là 2 phương thức sử dụng để cập nhật hoặc lấy ra giá trị thuộc tính, đặc biệt dành cho các thuộc tính ở phạm vi private.
+
+&emsp;Việc sử dụng Setter và Getter cần thiết trong việc kiểm soát những thuộc tính quan trọng mà ta thường được sử dụng và yêu cầu giá trị chính xác. Ví dụ thuộc tính age lưu tuổi con người, thực tế thì phạm vi tuổi là từ 0 đến 100, thì ta không thể cho chương trình lưu giá trị age âm hoặc quá 100 được.
+
+Cú pháp:
+
+**Setter**
+``` C++
+void set<tên thuộc tính> (<tham số giá trị mới>) {
+      this-><tên thuộc tính> = <tham số giá trị mới>;
+}
+
+```
+**Getter**
+``` C++
+<kiểu dữ liệu thuộc tính> get<tên thuộc tính> () {
+      return <tên thuộc tính>;
+}
+
+```
+VD : 
+``` C++
+class Person{
+private:
+    string name;
+public:
+    void setName (string name) {
+        this->name = name;
+    }
+    string getName(){
+        return name;
+    }
+}
+```
+***Note*** :
+- Khi đã dùng setter và getter thì thuộc tính nên để private
+- Hãy cẩn thận với kiểu dữ liệu tham chiếu
+
 
