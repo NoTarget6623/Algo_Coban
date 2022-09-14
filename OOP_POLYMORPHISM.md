@@ -32,7 +32,7 @@
 
 **Từ khóa virtual**
 
-![]([resources\virtual-trong-c-la-gi-tac-dung-virtual-trong-c.png](https://github.com/NoTarget6623/Algo_Coban/blob/main/resources/inheritance-in-c-22-638.jpg?raw=true))
+![](https://github.com/NoTarget6623/Algo_Coban/blob/main/resources/inheritance-in-c-22-638.jpg?raw=true)
 
 Tác dụng của từ khóa virtual đó chính là cho phép :
 - Phương thức ở lớp con ghi đè lên phương thức lớp cha
