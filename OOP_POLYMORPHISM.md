@@ -13,7 +13,7 @@
 - Lợi ích rõ ràng nhất mà chúng ta có thể thấy được đó chính là tránh bị lặp code
 
 ## II. Phân loại đa hình 
-![](resources\Polymorphism-1-768x402.webp](https://raw.githubusercontent.com/NoTarget6623/Algo_Coban/main/resources/Polymorphism-1-768x402.webp)
+![](https://raw.githubusercontent.com/NoTarget6623/Algo_Coban/main/resources/Polymorphism-1-768x402.webp)
 
 ### **Compile Time Polymorphism**
 
