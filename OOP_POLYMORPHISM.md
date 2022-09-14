@@ -25,7 +25,7 @@
 
 &emsp;&emsp;Nên chúng ta sẽ tìm hiểu luôn loại đa hình thứ 3
 
-### **Rum Time Polymorphism**
+### **Run Time Polymorphism**
 &emsp;&emsp;Tính đa hình được thể hiện ở cách nạp chồng toán tử trong kế thừa.
 
 &emsp;&emsp;Để tìm hiểu về loại đa hình này thì trước hết chúng ta cần tìm hiểu về từ khóa `virtual`
