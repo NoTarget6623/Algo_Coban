@@ -32,7 +32,7 @@
 
 **Từ khóa virtual**
 
-![](https://github.com/NoTarget6623/Algo_Coban/blob/main/resources/inheritance-in-c-22-638.jpg?raw=true)
+![](https://github.com/NoTarget6623/Algo_Coban/blob/main/resources/virtual-trong-c-la-gi-tac-dung-virtual-trong-c.png?raw=true)
 
 Tác dụng của từ khóa virtual đó chính là cho phép :
 - Phương thức ở lớp con ghi đè lên phương thức lớp cha
@@ -114,7 +114,7 @@ public :
 
 &emsp;&emsp;Có một vấn đề khi một lớp cơ sở được kế thừa bởi nhiều lớp dẫn xuất.
 
-![](resources\UntitledDiagram.png)
+![](https://github.com/NoTarget6623/Algo_Coban/blob/main/resources/UntitledDiagram.png?raw=true)
 
 &emsp;&emsp;Hai lớp B và C kế thừa từ lớp A. Lớp D kế thừa từ cả hai lớp B và C. Như vậy, lớp A được kế thừa hai lần bởi lớp D. Lần thứ nhất được kế thừa thông qua lớp B, lần thứ hai được kế thừa thông qua lớp C.
 
