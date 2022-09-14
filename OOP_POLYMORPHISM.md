@@ -137,7 +137,7 @@ class C : public A{
 class D : public B, public C{
 };
 void main(){
-	D object;
+    D object;
     object.show();//error: ambiguous access of 'show'
 }
 ```
@@ -184,7 +184,7 @@ class C : virtual public A{
 class D : public B, public C{
 };
 void main(){
-	D object;
+    D object;
     object.show();
 }
 ```
