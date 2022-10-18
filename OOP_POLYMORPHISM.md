@@ -13,7 +13,7 @@
 - Lợi ích rõ ràng nhất mà chúng ta có thể thấy được đó chính là tránh bị lặp code
 
 ## II. Phân loại đa hình 
-![](resources\Polymorphism-1-768x402.webp)
+![](https://raw.githubusercontent.com/NoTarget6623/Algo_Coban/main/resources/Polymorphism-1-768x402.webp)
 
 ### **Compile Time Polymorphism**
 
@@ -25,14 +25,14 @@
 
 &emsp;&emsp;Nên chúng ta sẽ tìm hiểu luôn loại đa hình thứ 3
 
-### **Rum Time Polymorphism**
+### **Run Time Polymorphism**
 &emsp;&emsp;Tính đa hình được thể hiện ở cách nạp chồng toán tử trong kế thừa.
 
 &emsp;&emsp;Để tìm hiểu về loại đa hình này thì trước hết chúng ta cần tìm hiểu về từ khóa `virtual`
 
 **Từ khóa virtual**
 
-![](resources\virtual-trong-c-la-gi-tac-dung-virtual-trong-c.png)
+![](https://github.com/NoTarget6623/Algo_Coban/blob/main/resources/virtual-trong-c-la-gi-tac-dung-virtual-trong-c.png?raw=true)
 
 Tác dụng của từ khóa virtual đó chính là cho phép :
 - Phương thức ở lớp con ghi đè lên phương thức lớp cha
@@ -114,7 +114,7 @@ public :
 
 &emsp;&emsp;Có một vấn đề khi một lớp cơ sở được kế thừa bởi nhiều lớp dẫn xuất.
 
-![](resources\UntitledDiagram.png)
+![](https://github.com/NoTarget6623/Algo_Coban/blob/main/resources/UntitledDiagram.png?raw=true)
 
 &emsp;&emsp;Hai lớp B và C kế thừa từ lớp A. Lớp D kế thừa từ cả hai lớp B và C. Như vậy, lớp A được kế thừa hai lần bởi lớp D. Lần thứ nhất được kế thừa thông qua lớp B, lần thứ hai được kế thừa thông qua lớp C.
 
@@ -137,7 +137,7 @@ class C : public A{
 class D : public B, public C{
 };
 void main(){
-	D object;
+    D object;
     object.show();//error: ambiguous access of 'show'
 }
 ```
@@ -184,7 +184,7 @@ class C : virtual public A{
 class D : public B, public C{
 };
 void main(){
-	D object;
+    D object;
     object.show();
 }
 ```
